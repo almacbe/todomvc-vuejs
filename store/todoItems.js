@@ -21,5 +21,9 @@ export const mutations = {
 
   clear: function(state) {
     state.all = state.all.filter(item => item.completed === false)
+  },
+
+  edit: function(state, { item, description }) {
+    item.description = description
   }
 }
