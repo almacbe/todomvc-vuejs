@@ -48,7 +48,11 @@
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
-      <button v-show="todoItemLeft > 0" class="clear-completed" @click="clear">
+      <button
+        v-show="hasSomeItemCompleted"
+        class="clear-completed"
+        @click="clear"
+      >
         Clear completed
       </button>
     </footer>
@@ -78,6 +82,12 @@ export default {
         item => !item.completed
       )
       return todos.length === 0
+    },
+    hasSomeItemCompleted: function() {
+      const todos = this.$store.state.todoItems.all.filter(
+        item => item.completed
+      )
+      return todos.length > 0
     }
   },
   methods: {
