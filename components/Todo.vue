@@ -10,10 +10,16 @@
       />
     </header>
     <!-- This section should be hidden by default and shown when there are todos -->
-    <section class="main">
-      <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <section v-if="hasTodoItems" class="main">
+      <input
+        id="toggle-all"
+        class="toggle-all"
+        type="checkbox"
+        :checked="hasAllItemsCompleted"
+        @click="toggleAll"
+      />
       <label for="toggle-all">Mark all as complete</label>
-      <ul v-if="items.length" class="todo-list">
+      <ul class="todo-list">
         <!-- These are here just to show the structure of the list items -->
         <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
         <todo-item
@@ -63,8 +69,13 @@ export default {
       const todos = this.$store.state.todoItems.all.filter(
         item => !item.completed
       )
-      // console.log('as', todos)
       return todos.length
+    },
+    hasAllItemsCompleted: function() {
+      const todos = this.$store.state.todoItems.all.filter(
+        item => !item.completed
+      )
+      return todos.length === 0
     }
   },
   // data() {
@@ -83,6 +94,9 @@ export default {
       this.$store.commit('todoItems/addItem', item)
 
       event.target.value = ''
+    },
+    toggleAll: function(event) {
+      this.$store.commit('todoItems/toggleAll', event.target.checked)
     },
     uuid: function() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(

@@ -13,6 +13,9 @@ export const mutations = {
 
   toggle: function(state, item) {
     item.completed = !item.completed
-    console.log(state, item)
+  },
+
+  toggleAll: function(state, value) {
+    state.all.map(item => (item.completed = value))
   }
 }
