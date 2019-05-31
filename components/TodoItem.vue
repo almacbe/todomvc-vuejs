@@ -1,7 +1,12 @@
 <template>
   <li :class="{ completed: item.completed }">
     <div class="view">
-      <input class="toggle" type="checkbox" :checked="item.completed" />
+      <input
+        class="toggle"
+        type="checkbox"
+        :checked="item.completed"
+        @click="toggle"
+      />
       <label>{{ item.description }}</label>
       <button class="destroy" @click="remove"></button>
     </div>
@@ -28,6 +33,9 @@ export default {
   methods: {
     remove: function(event) {
       this.$store.commit('todoItems/removeItem', this.item)
+    },
+    toggle: function(event) {
+      this.$store.commit('todoItems/toggle', this.item)
     }
   }
 }

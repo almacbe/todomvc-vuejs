@@ -24,9 +24,11 @@
       </ul>
     </section>
     <!-- This footer should hidden by default and shown when there are todos -->
-    <footer v-if="this.$store.state.todoItems.all.length" class="footer">
+    <footer v-if="hasTodoItems" class="footer">
       <!-- This should be `0 items left` by default -->
-      <span class="todo-count"><strong>0</strong> item left</span>
+      <span class="todo-count">
+        <strong>{{ todoItemLeft }}</strong> item left
+      </span>
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
@@ -50,16 +52,26 @@ import TodoItem from './TodoItem'
 
 export default {
   components: { TodoItem },
-  // computed: {
-  //   post () {
-  //     return this.$store.todoItems.all;
-  //   }
-  // },
-  data() {
-    return {
-      items: this.$store.state.todoItems.all
+  computed: {
+    items: function() {
+      return this.$store.state.todoItems.all
+    },
+    hasTodoItems: function() {
+      return this.$store.state.todoItems.all.length > 0
+    },
+    todoItemLeft: function() {
+      const todos = this.$store.state.todoItems.all.filter(
+        item => !item.completed
+      )
+      // console.log('as', todos)
+      return todos.length
     }
   },
+  // data() {
+  //   return {
+  //     items: this.$store.state.todoItems.all
+  //   }
+  // },
   methods: {
     addItem: function(event) {
       const item = {
@@ -69,7 +81,8 @@ export default {
       }
 
       this.$store.commit('todoItems/addItem', item)
-      // this.$store.state.todoItems.add(item)
+
+      event.target.value = ''
     },
     uuid: function() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(
