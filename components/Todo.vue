@@ -1,0 +1,85 @@
+<template>
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input
+        class="new-todo"
+        placeholder="What needs to be done?"
+        autofocus
+        @keyup.enter="addItem"
+      />
+    </header>
+    <!-- This section should be hidden by default and shown when there are todos -->
+    <section class="main">
+      <input id="toggle-all" class="toggle-all" type="checkbox" />
+      <label for="toggle-all">Mark all as complete</label>
+      <ul v-if="items.length" class="todo-list">
+        <!-- These are here just to show the structure of the list items -->
+        <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+        <todo-item
+          v-for="item in items"
+          :key="item.id"
+          :item="item"
+        ></todo-item>
+      </ul>
+    </section>
+    <!-- This footer should hidden by default and shown when there are todos -->
+    <footer v-if="this.$store.state.todoItems.all.length" class="footer">
+      <!-- This should be `0 items left` by default -->
+      <span class="todo-count"><strong>0</strong> item left</span>
+      <!-- Remove this if you don't implement routing -->
+      <ul class="filters">
+        <li>
+          <a class="selected" href="#/">All</a>
+        </li>
+        <li>
+          <a href="#/active">Active</a>
+        </li>
+        <li>
+          <a href="#/completed">Completed</a>
+        </li>
+      </ul>
+      <!-- Hidden if no completed items are left ↓ -->
+      <button class="clear-completed">Clear completed</button>
+    </footer>
+  </section>
+</template>
+
+<script>
+import TodoItem from './TodoItem'
+
+export default {
+  components: { TodoItem },
+  // computed: {
+  //   post () {
+  //     return this.$store.todoItems.all;
+  //   }
+  // },
+  data() {
+    return {
+      items: this.$store.state.todoItems.all
+    }
+  },
+  methods: {
+    addItem: function(event) {
+      const item = {
+        id: this.uuid(),
+        description: event.target.value,
+        completed: false
+      }
+
+      this.$store.commit('todoItems/addItem', item)
+      // this.$store.state.todoItems.add(item)
+    },
+    uuid: function() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(
+        c
+      ) {
+        const r = (Math.random() * 16) | 0
+        const v = c === 'x' ? r : (r & 0x3) | 0x8
+        return v.toString(16)
+      })
+    }
+  }
+}
+</script>
