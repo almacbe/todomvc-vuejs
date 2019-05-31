@@ -10,7 +10,7 @@
       />
     </header>
     <!-- This section should be hidden by default and shown when there are todos -->
-    <section v-if="hasTodoItems" class="main">
+    <section v-show="hasTodoItems" class="main">
       <input
         id="toggle-all"
         class="toggle-all"
@@ -30,7 +30,7 @@
       </ul>
     </section>
     <!-- This footer should hidden by default and shown when there are todos -->
-    <footer v-if="hasTodoItems" class="footer">
+    <footer v-show="hasTodoItems" class="footer">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count">
         <strong>{{ todoItemLeft }}</strong> item left
