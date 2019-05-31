@@ -17,5 +17,9 @@ export const mutations = {
 
   toggleAll: function(state, value) {
     state.all.map(item => (item.completed = value))
+  },
+
+  clear: function(state) {
+    state.all = state.all.filter(item => item.completed === false)
   }
 }

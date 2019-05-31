@@ -48,7 +48,9 @@
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
-      <button class="clear-completed">Clear completed</button>
+      <button v-show="todoItemLeft > 0" class="clear-completed" @click="clear">
+        Clear completed
+      </button>
     </footer>
   </section>
 </template>
@@ -78,11 +80,6 @@ export default {
       return todos.length === 0
     }
   },
-  // data() {
-  //   return {
-  //     items: this.$store.state.todoItems.all
-  //   }
-  // },
   methods: {
     addItem: function(event) {
       const item = {
@@ -97,6 +94,9 @@ export default {
     },
     toggleAll: function(event) {
       this.$store.commit('todoItems/toggleAll', event.target.checked)
+    },
+    clear: function() {
+      this.$store.commit('todoItems/clear')
     },
     uuid: function() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(
