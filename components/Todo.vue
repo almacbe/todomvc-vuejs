@@ -2,33 +2,10 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
-      <input
-        class="new-todo"
-        placeholder="What needs to be done?"
-        autofocus
-        @keyup.enter="addItem"
-      />
+      <create-todo-item />
     </header>
-    <!-- This section should be hidden by default and shown when there are todos -->
-    <section v-show="hasTodoItems" class="main">
-      <input
-        id="toggle-all"
-        class="toggle-all"
-        type="checkbox"
-        :checked="hasAllItemsCompleted"
-        @click="toggleAll"
-      />
-      <label for="toggle-all">Mark all as complete</label>
-      <ul class="todo-list">
-        <!-- These are here just to show the structure of the list items -->
-        <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-        <todo-item
-          v-for="item in items"
-          :key="item.id"
-          :item="item"
-        ></todo-item>
-      </ul>
-    </section>
+
+    <todo-list :filter="filter" />
     <!-- This footer should hidden by default and shown when there are todos -->
     <footer v-show="hasTodoItems" class="footer">
       <!-- This should be `0 items left` by default -->
@@ -38,13 +15,19 @@
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
-          <a class="selected" href="#/">All</a>
+          <NuxtLink to="/todo" :class="{ selected: isAllFilter }">
+            All
+          </NuxtLink>
         </li>
         <li>
-          <a href="#/active">Active</a>
+          <NuxtLink to="/active" :class="{ selected: isActiveFilter }">
+            Active
+          </NuxtLink>
         </li>
         <li>
-          <a href="#/completed">Completed</a>
+          <NuxtLink to="/completed" :class="{ selected: isCompletedFilter }">
+            Completed
+          </NuxtLink>
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
@@ -60,14 +43,18 @@
 </template>
 
 <script>
-import TodoItem from './TodoItem'
+import CreateTodoItem from './CreateTodoItem'
+import TodoList from './TodoList'
 
 export default {
-  components: { TodoItem },
+  components: { TodoList, CreateTodoItem },
+  props: {
+    filter: {
+      type: String,
+      default: 'all'
+    }
+  },
   computed: {
-    items: function() {
-      return this.$store.state.todoItems.all
-    },
     hasTodoItems: function() {
       return this.$store.state.todoItems.all.length > 0
     },
@@ -77,45 +64,25 @@ export default {
       )
       return todos.length
     },
-    hasAllItemsCompleted: function() {
-      const todos = this.$store.state.todoItems.all.filter(
-        item => !item.completed
-      )
-      return todos.length === 0
-    },
     hasSomeItemCompleted: function() {
       const todos = this.$store.state.todoItems.all.filter(
         item => item.completed
       )
       return todos.length > 0
+    },
+    isActiveFilter: function() {
+      return this.filter === 'active'
+    },
+    isCompletedFilter: function() {
+      return this.filter === 'completed'
+    },
+    isAllFilter: function() {
+      return !this.isActiveFilter && !this.isCompletedFilter
     }
   },
   methods: {
-    addItem: function(event) {
-      const item = {
-        id: this.uuid(),
-        description: event.target.value,
-        completed: false
-      }
-
-      this.$store.commit('todoItems/addItem', item)
-
-      event.target.value = ''
-    },
-    toggleAll: function(event) {
-      this.$store.commit('todoItems/toggleAll', event.target.checked)
-    },
     clear: function() {
       this.$store.commit('todoItems/clear')
-    },
-    uuid: function() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(
-        c
-      ) {
-        const r = (Math.random() * 16) | 0
-        const v = c === 'x' ? r : (r & 0x3) | 0x8
-        return v.toString(16)
-      })
     }
   }
 }
