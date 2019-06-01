@@ -9,7 +9,6 @@
 
 <script>
 export default {
-  name: 'CreateTodoItem',
   methods: {
     addItem: function(event) {
       const item = {

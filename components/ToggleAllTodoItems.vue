@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  name: 'ToggleAllTodoItems',
   computed: {
     hasAllItemsCompleted: function() {
       const todos = this.$store.state.todoItems.all.filter(

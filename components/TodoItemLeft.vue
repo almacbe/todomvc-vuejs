@@ -6,7 +6,6 @@
 </template>
 <script>
 export default {
-  name: 'TodoItemLeft',
   computed: {
     todoItemLeft: function() {
       const todos = this.$store.state.todoItems.all.filter(
