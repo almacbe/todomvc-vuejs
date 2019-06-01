@@ -15,7 +15,7 @@
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
-          <NuxtLink to="/todo" :class="{ selected: isAllFilter }">
+          <NuxtLink to="/" :class="{ selected: isAllFilter }">
             All
           </NuxtLink>
         </li>
