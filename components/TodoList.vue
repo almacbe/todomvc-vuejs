@@ -14,11 +14,7 @@ import TodoItem from './TodoItem'
 import ToggleAllTodoItems from './ToggleAllTodoItems'
 
 export default {
-  name: 'TodoList',
   components: { TodoItem, ToggleAllTodoItems },
-  props: {
-    filter: String
-  },
   computed: {
     hasTodoItems: function() {
       return this.$store.state.todoItems.all.length > 0
@@ -45,6 +41,9 @@ export default {
     isAllFilter: function() {
       return !this.isActiveFilter && !this.isCompletedFilter
     }
+  },
+  created() {
+    this.filter = this.$route.params.filter
   }
 }
 </script>

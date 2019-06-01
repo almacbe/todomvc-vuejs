@@ -1,6 +1,6 @@
 <template>
   <div>
-    <todo :filter="$route.params.filter" />
+    <todo :filter="filter" />
   </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
     return {
       title: 'TodoMVC'
     }
+  },
+  created() {
+    this.filter = this.$route.params.filter
   }
 }
 </script>
