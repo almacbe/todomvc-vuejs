@@ -1,11 +1,6 @@
 <template>
   <div>
     <todo />
-    <div class="info">
-      <p>Double-click to edit a todo</p>
-      <p>Created by <a href="https://alfonsomachado.com">Alfonso Machado</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </div>
   </div>
 </template>
 
@@ -13,6 +8,7 @@
 import Todo from '~/components/Todo.vue'
 
 export default {
+  layout: 'todoBase',
   components: {
     Todo
   },
