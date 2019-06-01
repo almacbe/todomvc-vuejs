@@ -1,15 +1,15 @@
 <template>
   <div>
-    <todo />
+    <todo-app />
   </div>
 </template>
 
 <script>
-import Todo from '~/components/Todo.vue'
+import TodoApp from '~/components/TodoApp.vue'
 
 export default {
   components: {
-    Todo
+    TodoApp
   },
   head() {
     return {
