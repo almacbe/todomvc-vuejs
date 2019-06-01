@@ -43,7 +43,6 @@ export default {
       this.editingItem = !this.editingItem
     },
     editItem: function(event) {
-      debugger
       const description = event.target.value
       this.$store.commit('todoItems/edit', {
         item: this.item,
