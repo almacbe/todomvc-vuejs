@@ -8,6 +8,9 @@ script:
     - yarn test
 after_script:
     - yarn coveralls
-after_success:
-    - chmod +x .travis/publish.sh
-    - .travis/publish.sh
+deploy:
+    provider: script
+    script: sh .travis/publish.sh
+    skip_cleanup: true
+    on:
+        branch: master
