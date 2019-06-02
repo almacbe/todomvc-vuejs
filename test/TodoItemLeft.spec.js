@@ -1,4 +1,4 @@
-import {shallowMount, createLocalVue} from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import TodoItemLeft from '@/components/TodoItemLeft.vue'
 import TodoItemBuilder from '@/test/builder/TodoItemBuilder'

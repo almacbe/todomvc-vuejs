@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     clear: function() {
-      this.$store.commit('todoItems/clear')
+      this.$store.dispatch('todoItems/clearCompletedItems')
     }
   }
 }

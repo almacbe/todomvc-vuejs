@@ -22,6 +22,9 @@ export const mutations = {
   clear: function(state) {
     state.all = state.all.filter(item => item.completed === false)
   },
+  CLEAR_COMPLETED: function(state) {
+    state.all = state.all.filter(item => item.completed === false)
+  },
 
   edit: function(state, { item, description }) {
     item.description = description
@@ -31,6 +34,9 @@ export const mutations = {
 export const actions = {
   toggle: function(context, item) {
     context.commit('TOGGLE', item)
+  },
+  clearCompletedItems: function(context, item) {
+    context.commit('CLEAR_COMPLETED')
   }
 }
 
