@@ -8,3 +8,6 @@ script:
     - yarn test
 after_script:
     - yarn coveralls
+after_success:
+    - chmod +x .travis/publish.sh
+    - .travis/publish.sh

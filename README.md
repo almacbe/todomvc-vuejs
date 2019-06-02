@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/almacbe/todomvc-vuejs.svg?branch=master)](https://travis-ci.org/almacbe/todomvc-vuejs)
 [![Coverage Status](https://coveralls.io/repos/github/almacbe/todomvc-vuejs/badge.svg)](https://coveralls.io/github/almacbe/todomvc-vuejs)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/420adf59-058a-4235-b0b3-8326806c97a7/deploy-status)](https://app.netlify.com/sites/todomvc-vuejs/deploys)
+
 
 > My tiptop Nuxt.js project
 
