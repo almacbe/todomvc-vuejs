@@ -11,7 +11,7 @@ export const mutations = {
     state.all.splice(state.all.indexOf(item), 1)
   },
 
-  toggle: function(state, item) {
+  TOGGLE: function(state, item) {
     item.completed = !item.completed
   },
 
@@ -25,6 +25,12 @@ export const mutations = {
 
   edit: function(state, { item, description }) {
     item.description = description
+  }
+}
+
+export const actions = {
+  toggle: function(context, item) {
+    context.commit('TOGGLE', item)
   }
 }
 

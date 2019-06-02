@@ -37,7 +37,7 @@ export default {
       this.$store.commit('todoItems/removeItem', this.item)
     },
     toggle: function(event) {
-      this.$store.commit('todoItems/toggle', this.item)
+      this.$store.dispatch('todoItems/toggle', this.item)
     },
     edit: function(event) {
       this.editingItem = !this.editingItem
