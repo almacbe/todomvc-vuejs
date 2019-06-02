@@ -18,7 +18,7 @@ export default {
   components: { ClearCompleted, FilterLinks, TodoItemLeft },
   computed: {
     hasTodoItems: function() {
-      return this.$store.state.todoItems.all.length > 0
+      return this.$store.getters['todoItems/list'].length > 0
     }
   }
 }

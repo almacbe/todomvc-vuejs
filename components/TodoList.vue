@@ -17,10 +17,10 @@ export default {
   components: { TodoItem, ToggleAllTodoItems },
   computed: {
     hasTodoItems: function() {
-      return this.$store.state.todoItems.all.length > 0
+      return this.$store.getters['todoItems/list'].length > 0
     },
     items: function() {
-      const todos = this.$store.state.todoItems.all
+      const todos = this.$store.getters['todoItems/list']
       if (this.isAllFilter) {
         return todos
       }

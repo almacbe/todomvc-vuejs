@@ -27,3 +27,9 @@ export const mutations = {
     item.description = description
   }
 }
+
+export const getters = {
+  list: function(state) {
+    return state.all
+  }
+}

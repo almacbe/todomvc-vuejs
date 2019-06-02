@@ -8,7 +8,7 @@
 export default {
   computed: {
     todoItemLeft: function() {
-      const todos = this.$store.state.todoItems.all.filter(
+      const todos = this.$store.getters['todoItems/list'].filter(
         item => !item.completed
       )
       return todos.length
