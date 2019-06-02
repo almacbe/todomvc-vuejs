@@ -8,9 +8,7 @@
 import TodoApp from '~/components/TodoApp.vue'
 
 export default {
-  components: {
-    TodoApp
-  },
+  components: { TodoApp },
   head() {
     return {
       title: 'TodoMVC'
