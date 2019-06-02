@@ -10,7 +10,7 @@ localVue.use(Vuex)
 describe('Todo Item left', () => {
   test('show zero items left when there is no todo items', () => {
     const getters = {
-      list: () => []
+      itemsLeft: () => []
     }
     const store = new Vuex.Store({
       modules: {
@@ -26,31 +26,11 @@ describe('Todo Item left', () => {
     expect(text.text()).toBe('0 item left')
   })
 
-  test('show 1 items left when there is no todo items', () => {
-    const item1 = new TodoItemBuilder().build()
-    const item2 = new TodoItemBuilder().withCompleted(true).build()
-    const getters = {
-      list: () => [item1, item2]
-    }
-    const store = new Vuex.Store({
-      modules: {
-        todoItems: {
-          namespaced: true,
-          getters
-        }
-      }
-    })
-    const wrapper = shallowMount(TodoItemLeft, { store, localVue })
-
-    const text = wrapper.find('.todo-count');
-    expect(text.text()).toBe('1 item left')
-  })
-
   test('show 2 items left when there is no todo items', () => {
     const item1 = new TodoItemBuilder().build()
     const item2 = new TodoItemBuilder().build()
     const getters = {
-      list: () => [item1, item2]
+      itemsLeft: () => [item1, item2]
     }
     const store = new Vuex.Store({
       modules: {

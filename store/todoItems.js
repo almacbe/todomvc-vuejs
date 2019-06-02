@@ -37,5 +37,8 @@ export const actions = {
 export const getters = {
   list: function(state) {
     return state.all
+  },
+  itemsLeft: function(state) {
+    return state.all.filter(item => !item.completed)
   }
 }
