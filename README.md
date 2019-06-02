@@ -1,5 +1,7 @@
 # todo-mvc-vuejs
 
+[![Build Status](https://travis-ci.org/almacbe/todomvc-vuejs.svg?branch=master)](https://travis-ci.org/almacbe/todomvc-vuejs)
+
 > My tiptop Nuxt.js project
 
 ## Build Setup
