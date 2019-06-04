@@ -15,15 +15,12 @@
 export default {
   computed: {
     hasAllItemsCompleted: function() {
-      const todos = this.$store.getters['todoItems/list'].filter(
-        item => !item.completed
-      )
-      return todos.length === 0
+      return this.$store.getters['todoItems/itemsLeft'].length === 0
     }
   },
   methods: {
-    toggleAll: function(event) {
-      this.$store.commit('todoItems/toggleAll', event.target.checked)
+    toggleAll(event) {
+      this.$store.dispatch('todoItems/toggleAll', event.target.checked)
     }
   }
 }

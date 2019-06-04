@@ -15,7 +15,7 @@ export const mutations = {
     item.completed = !item.completed
   },
 
-  toggleAll: function(state, value) {
+  TOGGLE_ALL(state, value) {
     state.all.map(item => (item.completed = value))
   },
 
@@ -35,8 +35,11 @@ export const actions = {
   toggle: function(context, item) {
     context.commit('TOGGLE', item)
   },
-  clearCompletedItems: function(context, item) {
+  clearCompletedItems: function(context) {
     context.commit('CLEAR_COMPLETED')
+  },
+  toggleAll({ commit }, checked) {
+    commit('TOGGLE_ALL', checked)
   }
 }
 
