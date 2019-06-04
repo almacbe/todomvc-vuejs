@@ -8,10 +8,7 @@
 export default {
   computed: {
     hasSomeItemCompleted: function() {
-      const todos = this.$store.getters['todoItems/list'].filter(
-        item => item.completed
-      )
-      return todos.length > 0
+      return this.$store.getters['todoItems/itemsCompleted'].length > 0
     }
   },
   methods: {

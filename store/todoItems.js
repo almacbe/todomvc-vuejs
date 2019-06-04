@@ -46,5 +46,8 @@ export const getters = {
   },
   itemsLeft: function(state) {
     return state.all.filter(item => !item.completed)
+  },
+  itemsCompleted(state) {
+    return state.all.filter(item => item.completed)
   }
 }

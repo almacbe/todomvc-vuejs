@@ -1,17 +1,15 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import ClearCompleted from '@/components/ClearCompleted'
-import TodoItemBuilder from "./builder/TodoItemBuilder";
+import TodoItemBuilder from './builder/TodoItemBuilder'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('Clear Completed Component', () => {
   test('Hidden if no completed items are left', () => {
-    const item1 = new TodoItemBuilder().build()
     const getters = {
-      // itemsCompleted: () => []
-      list: () => [item1]
+      itemsCompleted: () => []
     }
     const store = new Vuex.Store({
       modules: {
@@ -25,33 +23,13 @@ describe('Clear Completed Component', () => {
     const wrapper = shallowMount(ClearCompleted, { store, localVue })
 
     const button = wrapper.find('.clear-completed');
-    expect(button.isVisible()).toBe(false)
-  })
-
-  test('Hidden if no items', () => {
-    const getters = {
-      // itemsCompleted: () => []
-      list: () => []
-    }
-    const store = new Vuex.Store({
-      modules: {
-        todoItems: {
-          namespaced: true,
-          getters
-        }
-      }
-    })
-    const wrapper = shallowMount(ClearCompleted, { store, localVue })
-    const button = wrapper.find('.clear-completed');
-
     expect(button.isVisible()).toBe(false)
   })
 
   test('Show button if there is a completed item', () => {
     const item1 = new TodoItemBuilder().withCompleted(true).build()
     const getters = {
-      // itemsCompleted: () => []
-      list: () => [item1]
+      itemsCompleted: () => [item1]
     }
     const store = new Vuex.Store({
       modules: {
@@ -71,8 +49,7 @@ describe('Clear Completed Component', () => {
   test('Click button dispatch clear completed items action', () => {
     const item1 = new TodoItemBuilder().withCompleted(true).build()
     const getters = {
-      // itemsCompleted: () => []
-      list: () => [item1]
+      itemsCompleted: () => [item1]
     }
     const actions = {
       clearCompletedItems: jest.fn()

@@ -30,4 +30,20 @@ describe('Todo Items Store', () => {
 
     expect(result).toHaveLength(2)
   })
+
+  test('returns one items comppleted on a array of three items', () => {
+    const item1 = new TodoItemBuilder().build()
+    const item2 = new TodoItemBuilder().build()
+    const item3 = new TodoItemBuilder().withCompleted(true).build()
+    const todos = [item1, item2, item3]
+
+    const state = {
+      all: todos
+    }
+
+    const result = getters.itemsCompleted(state)
+
+    expect(result).toHaveLength(1)
+    expect(result[0]).toBe(item3)
+  })
 })
