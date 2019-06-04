@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import ToggleAllTodoItems from '../components/ToggleAllTodoItems'
-import TodoItemBuilder from './builder/TodoItemBuilder'
+import ToggleAllTodoItems from '@/components/ToggleAllTodoItems'
+import TodoItemBuilder from '@/test/builder/TodoItemBuilder'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

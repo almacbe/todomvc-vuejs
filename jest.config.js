@@ -5,6 +5,7 @@ module.exports = {
     '^vue$': 'vue/dist/vue.common.js'
   },
   moduleFileExtensions: ['js', 'vue', 'json'],
+  testPathIgnorePatterns: ['e2e'],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest'

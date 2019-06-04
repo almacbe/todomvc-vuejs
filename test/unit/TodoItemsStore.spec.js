@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '@/store/todoItems'
-import TodoItemBuilder from './builder/TodoItemBuilder'
+import TodoItemBuilder from '@/test/builder/TodoItemBuilder'
 
 describe('Todo Items Store', () => {
   test('returns one items left on a array of two items', () => {
