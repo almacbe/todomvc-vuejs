@@ -20,17 +20,15 @@ export default {
       return this.$store.getters['todoItems/list'].length > 0
     },
     items: function() {
-      const todos = this.$store.getters['todoItems/list']
       if (this.isAllFilter) {
-        return todos
+        return this.$store.getters['todoItems/list']
       }
 
-      let done = true
       if (this.isActiveFilter) {
-        done = false
+        return this.$store.getters['todoItems/itemsLeft']
       }
 
-      return todos.filter(item => item.completed === done)
+      return this.$store.getters['todoItems/itemsCompleted']
     },
     isActiveFilter: function() {
       return this.filter === 'active'
