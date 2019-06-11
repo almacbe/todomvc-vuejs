@@ -21,7 +21,7 @@ describe('Todo Item left', () => {
       }
     })
     const wrapper = shallowMount(TodoItemLeft, { store, localVue })
-    const text = wrapper.find('.todo-count');
+    const text = wrapper.find('.todo-count')
 
     expect(text.text()).toBe('0 item left')
   })
@@ -42,7 +42,7 @@ describe('Todo Item left', () => {
     })
     const wrapper = shallowMount(TodoItemLeft, { store, localVue })
 
-    const text = wrapper.find('.todo-count');
+    const text = wrapper.find('.todo-count')
     expect(text.text()).toBe('2 item left')
   })
 })

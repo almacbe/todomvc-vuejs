@@ -22,7 +22,7 @@ describe('Clear Completed Component', () => {
 
     const wrapper = shallowMount(ClearCompleted, { store, localVue })
 
-    const button = wrapper.find('.clear-completed');
+    const button = wrapper.find('.clear-completed')
     expect(button.isVisible()).toBe(false)
   })
 
@@ -42,7 +42,7 @@ describe('Clear Completed Component', () => {
 
     const wrapper = shallowMount(ClearCompleted, { store, localVue })
 
-    const button = wrapper.find('.clear-completed');
+    const button = wrapper.find('.clear-completed')
     expect(button.isVisible()).toBe(true)
   })
 
@@ -64,7 +64,7 @@ describe('Clear Completed Component', () => {
       }
     })
     const wrapper = shallowMount(ClearCompleted, { store, localVue })
-    const button = wrapper.find('.clear-completed');
+    const button = wrapper.find('.clear-completed')
 
     button.trigger('click')
 

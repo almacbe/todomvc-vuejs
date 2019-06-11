@@ -31,7 +31,7 @@ describe('Todo List Component', () => {
       mocks: { $route }
     })
 
-    const button = wrapper.find('section.main');
+    const button = wrapper.find('section.main')
     expect(button.isVisible()).toBe(false)
     const items = wrapper.find('ul')
     expect(items.isEmpty()).toBe(true)

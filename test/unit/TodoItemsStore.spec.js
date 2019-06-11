@@ -8,7 +8,7 @@ describe('Todo Items Store', () => {
     const todos = [item1, item2]
 
     const state = {
-      all: todos,
+      all: todos
     }
 
     const result = getters.itemsLeft(state)
@@ -23,7 +23,7 @@ describe('Todo Items Store', () => {
     const todos = [item1, item2]
 
     const state = {
-      all: todos,
+      all: todos
     }
 
     const result = getters.itemsLeft(state)

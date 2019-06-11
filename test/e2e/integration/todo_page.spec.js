@@ -9,7 +9,6 @@ context('TODO MVC App', () => {
       .type('Todo bonico')
       .type('{enter}', { force: true })
 
-    cy.get('.todo-list label')
-      .should('have.text', 'Todo bonico')
+    cy.get('.todo-list label').should('have.text', 'Todo bonico')
   })
 })
