@@ -5,49 +5,37 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addItem: function(state, item) {
+  ADD_ITEM(state, item) {
     state.all.push(item)
   },
-
-  ADD_ITEM: function(state, item) {
-    state.all.push(item)
-  },
-
-  removeItem: function(state, item) {
+  removeItem(state, item) {
     state.all.splice(state.all.indexOf(item), 1)
   },
-
-  TOGGLE: function(state, item) {
+  TOGGLE(state, item) {
     item.completed = !item.completed
   },
-
   TOGGLE_ALL(state, value) {
     state.all.map(item => (item.completed = value))
   },
-
-  clear: function(state) {
+  CLEAR_COMPLETED(state) {
     state.all = state.all.filter(item => item.completed === false)
   },
-  CLEAR_COMPLETED: function(state) {
-    state.all = state.all.filter(item => item.completed === false)
-  },
-
-  edit: function(state, { item, description }) {
+  edit(state, { item, description }) {
     item.description = description
   }
 }
 
 export const actions = {
-  toggle: function(context, item) {
-    context.commit('TOGGLE', item)
+  toggle({ commit }, item) {
+    commit('TOGGLE', item)
   },
-  clearCompletedItems: function(context) {
-    context.commit('CLEAR_COMPLETED')
+  clearCompletedItems({ commit }) {
+    commit('CLEAR_COMPLETED')
   },
   toggleAll({ commit }, checked) {
     commit('TOGGLE_ALL', checked)
   },
-  createItem: function({ commit }, description) {
+  createItem({ commit }, description) {
     const item = {
       id: uuidGenerator(),
       description: description,
@@ -58,10 +46,10 @@ export const actions = {
 }
 
 export const getters = {
-  list: function(state) {
+  list(state) {
     return state.all
   },
-  itemsLeft: function(state) {
+  itemsLeft(state) {
     return state.all.filter(item => !item.completed)
   },
   itemsCompleted(state) {
