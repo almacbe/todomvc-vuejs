@@ -8,7 +8,8 @@ export const mutations = {
   ADD_ITEM(state, item) {
     state.all.push(item)
   },
-  removeItem(state, item) {
+  REMOVE_ITEM(state, id) {
+    const item = state.all.find(item => item.id === id)
     state.all.splice(state.all.indexOf(item), 1)
   },
   TOGGLE(state, item) {
@@ -46,6 +47,9 @@ export const actions = {
   },
   editItem({ commit }, params) {
     commit('EDIT_ITEM', params)
+  },
+  removeItem({ commit }, id) {
+    commit('REMOVE_ITEM', id)
   }
 }
 
