@@ -20,7 +20,8 @@ export const mutations = {
   CLEAR_COMPLETED(state) {
     state.all = state.all.filter(item => item.completed === false)
   },
-  edit(state, { item, description }) {
+  EDIT_ITEM(state, { id, description }) {
+    const item = state.all.find(item => item.id === id)
     item.description = description
   }
 }
@@ -42,6 +43,9 @@ export const actions = {
       completed: false
     }
     commit('ADD_ITEM', item)
+  },
+  editItem({ commit }, params) {
+    commit('EDIT_ITEM', params)
   }
 }
 

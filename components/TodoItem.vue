@@ -44,8 +44,8 @@ export default {
     },
     editItem: function(event) {
       const description = event.target.value
-      this.$store.commit('todoItems/edit', {
-        item: this.item,
+      this.$store.dispatch('todoItems/editItem', {
+        id: this.item.id,
         description: description
       })
 
