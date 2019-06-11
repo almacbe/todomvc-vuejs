@@ -1,9 +1,15 @@
+import uuidGenerator from '@/helpers/uuid_generator'
+
 export const state = () => ({
   all: []
 })
 
 export const mutations = {
   addItem: function(state, item) {
+    state.all.push(item)
+  },
+
+  ADD_ITEM: function(state, item) {
     state.all.push(item)
   },
 
@@ -40,6 +46,14 @@ export const actions = {
   },
   toggleAll({ commit }, checked) {
     commit('TOGGLE_ALL', checked)
+  },
+  createItem: function({ commit }, description) {
+    const item = {
+      id: uuidGenerator(),
+      description: description,
+      completed: false
+    }
+    commit('ADD_ITEM', item)
   }
 }
 
